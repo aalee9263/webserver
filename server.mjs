@@ -9,22 +9,25 @@ import path from 'path'
         console.log(`${req.ip} is asking for weather`)
     res.send({
         
-        "cityName": "Karachi",
-        
+        city: "karachi",
+        temp: 26,
+        humidity: 20,
+        max_temp_c: 18,
+        min_temp_c: 18,
 
     })
     })
 
+    const __dirname = path.resolve();
+
+    console.log("__dirname:", __dirname)
+    console.log("__dirname:", path.join(__dirname, "/web-page"))
+    
+    app.get('/', express.static(path.join(__dirname,"/web-page")))
+    app.use('/*', express.static(path.join(__dirname,"/web-page")))
 
     app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
     })
 
 
-const __dirname = path.resolve();
-
-console.log("__dirname:", __dirname)
-console.log("__dirname:", path.join(__dirname, "/web-page"))
-
-app.get('/', express.static(path.join(__dirname,"/web-page")))
-app.use('/*', express.static(path.join(__dirname,"/web-page")))

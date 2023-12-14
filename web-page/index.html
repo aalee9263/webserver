@@ -16,15 +16,19 @@
 
     <script>
 
-let cityName = document.querySelector("#cityName").value;
+    const url = window.location.href;
+    let baseUrl = "";
+   
+      if (url.split(":")[0] === 'http'){
+        baseUrl = "http:localhost:5001"
+      }
+      else {
+        baseUrl = 'https://rich-red-centipede-tutu.cyclic.app/'
+      }
 
 let getWeather=() =>
 {
-let cityName = document.querySelector("#cityName").value;
-
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=e0f99c494c2ce394a18cc2fd3f100543&q=${cityName}`;
-
-  axios.get(apiUrl)
+  axios.get(baseUrl)
   .then(function (response) {
 
     console.log(response.data);
